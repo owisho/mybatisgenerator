@@ -8,39 +8,63 @@
             location="C:/Oracle/Middleware/wlserver_10.3/server/lib/ojdbc6.jar"/> -->
     <context id="my" targetRuntime="MyBatis3">
     
-    	<plugin type="com.fxhx.gamelog.common.plugin.PaginationPlugin" />
+    	<!-- <plugin type="com.fxhx.gamelog.common.plugin.PaginationPlugin" /> -->
     	
         <commentGenerator>
             <property name="suppressDate" value="false"/>
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 		
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.1.12:3306/phm_db?useUnicode=true&amp;characterEncoding=UTF-8" userId="test"
-                        password="test"/>
-
-        <javaModelGenerator targetPackage="com.haihong.entity"
+		<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://172.25.2.28:1433;databaseName=HAIHONG_SHIJI_PROD" userId="sa"
+                        password="123456"/>
+		
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://172.25.14.12:3306/rpms-biz-test?useUnicode=true&amp;characterEncoding=UTF-8" userId="test"
+                        password="test"/> -->
+		
+		<javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<property name="forceBigDecimals" value="true"/>
+		</javaTypeResolver>
+		
+        <javaModelGenerator targetPackage="com.searainbow.rsrdc.rpms.puthsp.entity"
                             targetProject="D:/output/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.haihong.dao.mapper"
+        <sqlMapGenerator targetPackage="com.searainbow.rsrdc.rpms.puthsp.dao"
                          targetProject="D:/output/src/main/resources/mappers">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="com.haihong.dao"
+        <javaClientGenerator targetPackage="com.searainbow.rsrdc.rpms.puthsp.dao"
                              targetProject="D:/output/src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
+	
+		<!-- <javaModelGenerator targetPackage="com.searainbow.rsrdc.rpms.order.model.entity"
+                            targetProject="D:/output/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
 
+        <sqlMapGenerator targetPackage="com.searainbow.rsrdc.rpms.order.dal.dao"
+                         targetProject="D:/output/src/main/resources/mappers">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.searainbow.rsrdc.rpms.order.dal.dao"
+                             targetProject="D:/output/src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator> -->
+		
         <!--<table tableName="T_FEE_AGTBILL" domainObjectName="FeeAgentBill"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>-->
 
-        <table tableName="phm_benefit_share_rule" domainObjectName="BenefitShareRule"
+        <table tableName="TRD_RECEIVE_DETAIL" domainObjectName="TrdReceiveDetail"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
